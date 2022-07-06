@@ -43,8 +43,8 @@
                         <thead class="thead-dark">
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Date</th>
+                            <th th:text="#{lbl.name}"></th>
+                            <th th:text="#{lbl.date}"></th>
                             <th></th>
                         </tr>
                         </thead>
@@ -91,7 +91,7 @@
                         <h4 class="display-4">
                             <i class="fas fa-folder"></i> 2</span>
                         </h4>
-                        <a href="#" class="btn btn-outline-light btn-sm">Add</a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><span th:text="#{btn.add}"></span> </a>
                     </div>
                 </div>
             </div>
