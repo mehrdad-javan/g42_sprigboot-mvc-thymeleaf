@@ -89,6 +89,8 @@ public class CategoryController {
         redirectAttributes.addFlashAttribute("message", "Category  name " + categoryView.getName() + " was successfully added");
         redirectAttributes.addFlashAttribute("alertClass", "alert alert-info");
 
+        // simulate a custom error message
+        //throw new IllegalArgumentException("Custom Exception");
 
         return "redirect:/category/list";
     }
