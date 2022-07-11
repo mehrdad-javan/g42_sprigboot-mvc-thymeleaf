@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import se.lexicon.mvcthymeleaf.model.dto.CategoryForm;
 import se.lexicon.mvcthymeleaf.model.dto.CategoryView;
 
 import java.time.LocalDate;
@@ -18,10 +19,10 @@ public class CategoryController {
     static List<CategoryView> categoryViews = new ArrayList<>();
 
     public CategoryController() {
-        System.out.println("default data loaded");
+        /*System.out.println("default data loaded");
         categoryViews.add(new CategoryView(1, "book", LocalDate.now()));
         categoryViews.add(new CategoryView(2, "laptop", LocalDate.now()));
-        categoryViews.add(new CategoryView(3, "mobile", LocalDate.now()));
+        categoryViews.add(new CategoryView(3, "mobile", LocalDate.now()));*/
     }
 
     @GetMapping("/list")
@@ -57,6 +58,29 @@ public class CategoryController {
         categoryViews.removeIf(view -> view.getId() == id);
         redirectAttributes.addFlashAttribute("message", "Category Id " + id + " was successfully deleted");
         redirectAttributes.addFlashAttribute("alertClass", "alert alert-info");
+        return "redirect:/category/list";
+    }
+
+
+    @GetMapping("/form")
+    public String categoryForm(Model model){
+
+        CategoryForm categoryForm = new CategoryForm();
+        model.addAttribute("category", categoryForm);
+
+        return "category/category-form";
+    }
+
+
+    @PostMapping("/add")
+    public String add(@ModelAttribute("category") CategoryForm categoryForm){
+        System.out.println("categoryForm = " + categoryForm);
+
+        int randomId = (int) (Math.random() * 100);
+
+        CategoryView categoryView = new CategoryView(randomId, categoryForm.getName(), LocalDate.now());
+        categoryViews.add(categoryView);
+
         return "redirect:/category/list";
     }
 
