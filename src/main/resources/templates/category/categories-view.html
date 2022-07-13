@@ -86,7 +86,7 @@
                     <div class="card-body">
                         <h3><span th:text="#{categories.header}"></span></h3>
                         <h4 class="display-4">
-                            <i class="fas fa-folder"></i> 2</span>
+                            <i class="fas fa-folder"></i> <span th:text="${categoryViewsSize}"></span></span>
                         </h4>
                         <a th:href="@{/category/form}" class="btn btn-outline-light btn-sm"><span th:text="#{btn.add}"></span> </a>
                     </div>
